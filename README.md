@@ -9,13 +9,10 @@
 <br />
 
 <a href="https://deutsche-deadlock-community.de">
-  <img src="https://img.shields.io/badge/Community-0b0907?style=for-the-badge&logo=googlechrome&logoColor=c8a86b" alt="deutsche-deadlock-community.de" />
+  <img src="https://img.shields.io/badge/deutsche--deadlock--community.de-0b0907?style=for-the-badge&logo=googlechrome&logoColor=c8a86b" alt="deutsche-deadlock-community.de" />
 </a>
-<a href="https://earlysalty.de">
-  <img src="https://img.shields.io/badge/earlysalty.de-c8a86b?style=for-the-badge&logoColor=0b0907" alt="earlysalty.de" />
-</a>
-<a href="https://earlysalty.com">
-  <img src="https://img.shields.io/badge/earlysalty.com-c8a86b?style=for-the-badge&logoColor=0b0907" alt="earlysalty.com" />
+<a href="https://deutsche-deadlock-community.de/streamer/">
+  <img src="https://img.shields.io/badge/Streamer-c8a86b?style=for-the-badge&logo=twitch&logoColor=0b0907" alt="Streamer-Seite" />
 </a>
 <a href="https://discord.gg/PhkP3WgY7w">
   <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" />
@@ -41,7 +38,7 @@
 
 Hey, ich bin **Nani**, auf GitHub **EarlySalty**. Ich habe die [**Deutsche Deadlock Community**](https://deutsche-deadlock-community.de) gebaut und betreibe sie: Discord, Twitch, Steam, Website und Turniere. Rund **2.500 Mitglieder**, deutschsprachig, von Spielern für Spieler.
 
-Die Seiten laufen unter [deutsche-deadlock-community.de](https://deutsche-deadlock-community.de), [earlysalty.de](https://earlysalty.de) und [earlysalty.com](https://earlysalty.com). Mail: [mail@earlysalty.com](mailto:mail@earlysalty.com).
+Die Website ist [deutsche-deadlock-community.de](https://deutsche-deadlock-community.de). Für Creator zählt vor allem die [Streamer-Seite](https://deutsche-deadlock-community.de/streamer/). Mail: [mail@earlysalty.com](mailto:mail@earlysalty.com).
 
 Ich stream selbst auf [Twitch](https://www.twitch.tv/earlysalty) und baue die Werkzeuge, mit denen andere Creator und Spieler auf dem Server zurechtkommen. Wenn nachts etwas ausfällt, gehe ich selbst ran.
 
@@ -118,14 +115,19 @@ Ich baue Systeme, die im Alltag der Community laufen, nicht Demos.
 
 ## Eigene Seiten
 
-Alles auf unseren Domains, live geprüft.
+Alles unter [deutsche-deadlock-community.de](https://deutsche-deadlock-community.de), live geprüft.
 
-### Domains
+### Streamer
 
-- [deutsche-deadlock-community.de](https://deutsche-deadlock-community.de)
-- [earlysalty.de](https://earlysalty.de)
-- [earlysalty.com](https://earlysalty.com)
-- Mail: [mail@earlysalty.com](mailto:mail@earlysalty.com)
+- [Streamer](https://deutsche-deadlock-community.de/streamer/)
+- [Onboarding](https://deutsche-deadlock-community.de/streamer/onboarding/)
+- [Streamer-FAQ](https://deutsche-deadlock-community.de/streamer/faq/)
+- [Dashboard-Demo](https://deutsche-deadlock-community.de/twitch/demo)
+- [Twitch-Bot Überblick](https://deutsche-deadlock-community.de/docs/twitch-bot/twitchbot-ueberblick.html)
+- [Analytics](https://deutsche-deadlock-community.de/docs/twitch-bot/analytics-dashboard.html)
+- [Auto-Raid](https://deutsche-deadlock-community.de/docs/twitch-bot/auto-raid.html)
+- [Go-Live auf Discord](https://deutsche-deadlock-community.de/docs/twitch-bot/discord-golive.html)
+- [Chat-Befehle](https://deutsche-deadlock-community.de/docs/twitch-bot/chat-befehle.html)
 
 ### Community
 
@@ -142,18 +144,6 @@ Alles auf unseren Domains, live geprüft.
 - [Wohin das hier soll](https://deutsche-deadlock-community.de/wohin/)
 - [Transparenz](https://deutsche-deadlock-community.de/transparenz/)
 - [Turnierplattform](https://deutsche-deadlock-community.de/turnier/)
-
-### Streamer
-
-- [Streamer](https://deutsche-deadlock-community.de/streamer/)
-- [Onboarding](https://deutsche-deadlock-community.de/streamer/onboarding/)
-- [Streamer-FAQ](https://deutsche-deadlock-community.de/streamer/faq/)
-- [Dashboard-Demo](https://deutsche-deadlock-community.de/twitch/demo)
-- [Twitch-Bot Überblick](https://deutsche-deadlock-community.de/docs/twitch-bot/twitchbot-ueberblick.html)
-- [Analytics](https://deutsche-deadlock-community.de/docs/twitch-bot/analytics-dashboard.html)
-- [Auto-Raid](https://deutsche-deadlock-community.de/docs/twitch-bot/auto-raid.html)
-- [Go-Live auf Discord](https://deutsche-deadlock-community.de/docs/twitch-bot/discord-golive.html)
-- [Chat-Befehle](https://deutsche-deadlock-community.de/docs/twitch-bot/chat-befehle.html)
 
 ### Docs
 
@@ -210,7 +200,7 @@ Alles auf unseren Domains, live geprüft.
 
 Website, Discord und die Dienste, die den Server tragen. Rund 2.500 Mitglieder, Mitspieler, Coaching, Voice, Streamer.
 
-🔗 [deutsche-deadlock-community.de](https://deutsche-deadlock-community.de) · [earlysalty.de](https://earlysalty.de) · [earlysalty.com](https://earlysalty.com) · [Discord](https://discord.gg/PhkP3WgY7w)
+🔗 [deutsche-deadlock-community.de](https://deutsche-deadlock-community.de) · [Streamer](https://deutsche-deadlock-community.de/streamer/) · [Discord](https://discord.gg/PhkP3WgY7w)
 
 ### Twitch-Bot und Streamer-Dashboard
 
@@ -247,7 +237,7 @@ Turnierbetrieb für die Community, Rust und Axum.
 
 ### Systeme bauen, die die Community tragen.
 
-[deutsche-deadlock-community.de](https://deutsche-deadlock-community.de) · [earlysalty.de](https://earlysalty.de) · [mail@earlysalty.com](mailto:mail@earlysalty.com)
+[deutsche-deadlock-community.de](https://deutsche-deadlock-community.de) · [Streamer](https://deutsche-deadlock-community.de/streamer/) · [mail@earlysalty.com](mailto:mail@earlysalty.com)
 
 <img src="assets/footer.jpg" width="100%" alt="" />
 
