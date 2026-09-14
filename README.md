@@ -226,8 +226,8 @@ Turnierbetrieb für die Community, Rust und Axum.
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=EarlySalty&show_icons=true&theme=dark&hide_border=true&bg_color=0b0907&title_color=c8a86b&icon_color=efd49d&text_color=ece0c8" height="160" alt="GitHub Statistik" />
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=EarlySalty&layout=compact&theme=dark&hide_border=true&bg_color=0b0907&title_color=c8a86b&text_color=ece0c8" height="160" alt="Meistgenutzte Sprachen" />
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=EarlySalty&amp;theme=github_dark" height="180" alt="GitHub Statistik" />
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=EarlySalty&amp;theme=github_dark" height="180" alt="Meistgenutzte Sprachen" />
 
 </div>
 
