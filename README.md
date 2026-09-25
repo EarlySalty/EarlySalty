@@ -167,6 +167,27 @@ Alles unter [deutsche-deadlock-community.de](https://deutsche-deadlock-community
 
 ## Woran ich arbeite
 
+### Commit-Aktivität
+
+Eigene Commits auf dem Default-Branch. Sortiert nach den letzten 7 Tagen; die 30 Tage zeigen den längerfristigen Kontext. Private Repositories erscheinen nur anonymisiert.
+
+<!-- activity-stats:start -->
+| Rang | Repository | 7 Tage | 30 Tage |
+|---:|---|---:|---:|
+| 1 | [Deadlock-Twitch-Bot](https://github.com/EarlySalty/Deadlock-Twitch-Bot) | 131 | 1043 |
+| 2 | [Deadlock-Bots](https://github.com/EarlySalty/Deadlock-Bots) | 90 | 170 |
+| 3 | [Deadlock-Brain](https://github.com/EarlySalty/Deadlock-Brain) | 50 | 237 |
+| 4 | [Deadlock-Docs](https://github.com/EarlySalty/Deadlock-Docs) | 36 | 82 |
+| 5 | [Website](https://github.com/EarlySalty/Website) | 19 | 68 |
+| 6 | 🔒 Privates Repo #1 | 17 | 72 |
+| 7 | 🔒 Privates Repo #2 | 13 | 13 |
+| 8 | 🔒 Privates Repo #3 | 10 | 145 |
+| 9 | 🔒 Privates Repo #4 | 10 | 17 |
+| 10 | 🔒 Privates Repo #5 | 7 | 52 |
+
+_Aktualisiert: 2026-09-26_
+<!-- activity-stats:end -->
+
 <p>
   <img src="https://img.shields.io/badge/Community-c8a86b?style=for-the-badge" alt="Community" />
   <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" />
