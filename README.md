@@ -36,13 +36,35 @@
 
 ## Über mich
 
-Hey, ich bin **Nani**, auf GitHub **EarlySalty**. Ich habe die [**Deutsche Deadlock Community**](https://deutsche-deadlock-community.de) gebaut und betreibe sie: Discord, Twitch, Steam, Website und Turniere. Rund **2.500 Mitglieder**, deutschsprachig, von Spielern für Spieler.
+Hey, ich bin **Nani**, auf GitHub **EarlySalty**. Ich habe die [**Deutsche Deadlock Community**](https://deutsche-deadlock-community.de) gebaut und betreibe sie: Discord, Twitch, Steam, Website und Turniere. Rund **3.500 Mitglieder**, deutschsprachig, von Spielern für Spieler.
 
 Die Website ist [deutsche-deadlock-community.de](https://deutsche-deadlock-community.de). Für Creator zählt vor allem die [Streamer-Seite](https://deutsche-deadlock-community.de/streamer/). Mail: [mail@earlysalty.com](mailto:mail@earlysalty.com).
 
 Ich stream selbst auf [Twitch](https://www.twitch.tv/earlysalty) und baue die Werkzeuge, mit denen andere Creator und Spieler auf dem Server zurechtkommen. Wenn nachts etwas ausfällt, gehe ich selbst ran.
 
 Seit August 2025 läuft das auf einem eigenen Root-Server. Rust in Produktion, PostgreSQL als Speicher, KI-Agenten für den Betrieb.
+
+> 💼 **Offen für Jobs:** Remote als **AI Engineer / AI-native Developer / AI Automation Engineer**. Ich bringe LLM-Features in Produktion und baue die Agent-Workflows, mit denen Software heute entsteht. Kontakt: [mail@earlysalty.com](mailto:mail@earlysalty.com)
+
+---
+
+## Die Community in Zahlen
+
+Live aus der eigenen Postgres gezählt, Stand November 2026.
+
+| | |
+|---|---|
+| Mitglieder auf dem Discord | **3.475** (gegründet September 2024) |
+| Neue Mitglieder, letzte 90 Tage | **1.242**, davon 1.019 allein im Oktober 2026 |
+| Voice-Stunden seit November 2025 | **49.185** h, davon 7.432 h in den letzten 30 Tagen |
+| Aktive Voice-Nutzer, letzte 30 Tage | **466** |
+| Nachrichten, letzte 30 Tage | **7.135** von 440 Mitgliedern |
+| Auto-Raids im Streamer-Netzwerk | **2.507** seit Januar 2026, 2.318 erfolgreich, 8.426 Zuschauer weitergeleitet |
+| KI-Entscheidungen mit Begründung im Ledger | **42.669** seit Juli 2026 |
+| KI-Moderationsfälle (Spam/Scam-Vorprüfung) | **2.110**, jeder mit Kategorie, Konfidenz und Begründung |
+| LLM-Aufrufe über das eigene Gateway | **26.276** in 6 Wochen, ~398 Mio. Tokens, Latenz und Fehler pro Aufruf erfasst |
+| Wissensbasis (RAG) | **5.170** Embedding-Chunks aus 124 Dokumenten |
+| Deadlock Brain | **355.645** Match-Datensätze für Builds und Meta |
 
 ---
 
@@ -98,18 +120,76 @@ KI-Aufrufe laufen über eine eigene Schnittstelle. Das Modell dahinter ist austa
 
 ---
 
-## Coding
+## AI-native Development: wie ich baue
 
-Ich baue Systeme, die im Alltag der Community laufen, nicht Demos.
+Code schreiben bei mir KI-Agenten (Claude Code, Codex, Grok, OpenCode, gesteuert über T3 Code). Architektur, Regeln, Aufgabenschnitt, Review, Merge-Gate, Deploy und Betrieb mache ich. Alles läuft live, nichts davon ist eine Demo.
 
-- **Rust** in Produktion (Serenity, Axum, sqlx). Python ist der Altbestand, vor allem noch im Twitch-Bot.
-- **TypeScript und React** für Streamer-Dashboard und Website.
-- **PostgreSQL** als zentrale Datenbank, TimescaleDB für Zeitreihen. Kein SQLite mehr im Live-Betrieb.
-- **Caddy** als Proxy, **Docker** wo es passt, **systemd** für die eigenen Units.
-- Ein Root-Server: Discord, Twitch, Steam, Website und Docs auf einer Maschine.
-- APIs: Discord Gateway und Slash-Commands, Twitch EventSub und OAuth, Steam Web-API.
+| Gezählt aus Git und Server | |
+|---|---|
+| Commits über meine Repos | **~13.800** in 11 Hauptprojekten |
+| Größte Codebasis | Twitch-Bot: 5.885 Commits, ~1.000 Rust-Dateien, ~680 TS/TSX-Dateien, 282 SQL-Migrationen |
+| Agent-Threads | **1.938** Threads mit ~54.000 Nachrichten (August bis Oktober 2026) |
+| Isolierte Agent-Worktrees | 187 |
+| Eigene Agent-Skills und Hooks | 47 Skills, ~30 Hooks mit eigenen Tests |
+| Dienste in Produktion | ~70 systemd-Units, 15 Docker-Container, 33 Timer |
 
-Öffentlicher Code liegt unter [github.com/EarlySalty](https://github.com/EarlySalty). Ein Teil der Bots ist privat, weil Tokens, Moderationslogik und Betriebsdaten nicht auf die Straße gehören.
+### Mein Orchestrierungs-System
+
+- **Modell-Pyramide:** feste Rollen statt einem Chat für alles. Intent, Vorcheck, Worker klein/mittel/groß, Delegator, Review, Fixer, Zweitmeinung. Pro Rolle freigegebene Modelle und ein fester Effort, in einer Konfigdatei.
+- **Vom Auftrag bis live:** Aufgaben nach Größe schneiden, Haupt-Orchestrator → Teil-Orchestratoren → Worker. Jeder Worker arbeitet in eigenem Git-Worktree und Branch.
+- **Eigenes Merge-Gate:** kein Merge ohne lokales Review mit Urteil ALLOW oder BLOCK. Bei BLOCK wird die ganze Fehlerklasse gefixt, mit frischem Fixer pro Runde. Nach Runde vier: Retro, Zweitmeinung, Stopp.
+- **Ursache statt Symptom:** jeder Bugfix braucht vier belegte Ebenen im Commit: Mechanismus, warum möglich, warum unbemerkt, gleiche Muster im restlichen Code. Offene Ursachen stehen in einem Register, nicht als Workaround im Agent-Gedächtnis.
+- **Guardrails als Code:** Hooks für Secret-Schutz, Config-Schutz, Branch-Abschluss, Effort-Grenzen für Subagenten, ein Kosten-Gate gegen teure Kaltstarts alter Threads, Code-Graph zuerst vor der Suche.
+- **Versioniertes Agent-Gedächtnis:** Regeln, Skills, Memory und Token-Verbrauch pro Modell, Projekt und Tag liegen in einem eigenen Repo.
+- **Eigene Agent-Tools:** MCP-Server (Codex-Worker für Claude Code, abgesicherter Coding-MCP, Code-Graph-MCP, Discord-MCP), Model-Router, [Claude-Account-Swapper](https://github.com/EarlySalty/Claude-Account-Swapper), [Codex-Account-Swapper](https://github.com/EarlySalty/Codex-Account-Swapper), Agent-Zugriff auf Secrets nur über eine Freigabe-Schicht ([vaultwarden-agent-stack](https://github.com/EarlySalty/vaultwarden-agent-stack)).
+
+### Weitere Projekte
+
+| Projekt | Was es macht | Stack |
+|---|---|---|
+| Deadlock Brain | Sammelt Quellen automatisch (APIs, Patchnotes, Sheets), versioniert sie und beantwortet im Discord Fragen zu Helden, Items und Builds (`!brain`), mit Antwort-Audits | Rust, Postgres, LLMs |
+| Deadlock 2nd Brain | LLM-gepflegtes Betriebs-Wiki: Projekte, SOPs, Systeme | Rust, Markdown |
+| rs-relay | HEVC-Ingest per SRT, Transcode mit ffmpeg, Multistream zu Twitch, Kick, YouTube und TikTok | Rust, ffmpeg |
+| Uplink | Neubau für Multistreaming und OBS-Docks nach eigenem Produktvertrag | Rust |
+| VOD-Archiv | Twitch-VODs automatisch laden, schneiden und per OAuth auf YouTube hochladen | Rust, yt-dlp, ffmpeg |
+| TradingBot | Trading-Bot, Neubau vom Python-Monolithen zur Schichtenarchitektur | Rust |
+| Server-Dashboard | Live-Monitor für CPU und RAM aus `/proc` und cgroups | Rust |
+
+### Skills von A bis Z
+
+🟢 Produktion: baue und betreibe ich live, täglich · 🟡 Sicher: gebaut und im Einsatz
+
+| Skill | Level | Beleg |
+|---|---|---|
+| Agent-Orchestrierung (Multi-Agent, Rollen, Worktrees) | 🟢 | eigenes System, 1.938 Threads |
+| AI-Coding-Tools (Claude Code, Codex, Grok, OpenCode, T3 Code) | 🟢 | Hauptarbeitsweise |
+| API-Integrationen (Discord, Twitch EventSub/OAuth, Steam, YouTube, Stripe) | 🟢 | Bots und Dashboards live |
+| Backups (pg_dump, rclone, Storj, verschlüsselt offsite) | 🟡 | täglich, mit Prüfsummen und Rotation |
+| Caddy (Reverse Proxy, TLS, mehrere Domains) | 🟢 | alle Seiten und Dienste |
+| Code-Review und Quality Gates | 🟢 | eigenes ALLOW/BLOCK-Gate mit Fehlerklassen |
+| Deploy, Releases, Watchdogs | 🟡 | Deploy-Queue, Rollback, Live-Prüfung |
+| Discord-Bots (Gateway, Slash-Commands, Components v2) | 🟢 | 3.475 Mitglieder |
+| Docker / Compose | 🟡 | Mailserver, Secrets-Tresor, Headless-Browser |
+| Evals und Audits für LLM-Antworten | 🟡 | Antwort-Audits im Brain, KI-Entscheidungs-Ledger |
+| ffmpeg und Video-Pipelines | 🟡 | rs-relay, VOD-Archiv |
+| Git (Worktrees, Branch-Strategie, Hooks) | 🟢 | ~13.800 Commits |
+| LLM-Integration (Provider-Abstraktion, Kosten, Fallbacks) | 🟢 | eigenes AI-Gateway, 26.276 Aufrufe in 6 Wochen |
+| Linux-Serverbetrieb (Ubuntu, systemd) | 🟢 | ~70 Units, Timer, Watchdogs |
+| Mailserver (Mailu, DKIM, DNS) | 🟡 | eigene Domains |
+| MCP-Server (Model Context Protocol) | 🟡 | 4 eigene Server |
+| Monitoring und Observability | 🟡 | Server-Dashboard, Journals, Alarme |
+| PostgreSQL / TimescaleDB / pgvector | 🟢 | ~490 SQL-Migrationen und Schemas |
+| Prompt- und Kontext-Engineering (Briefings, Skills, Memory) | 🟢 | 47 Skills, eigenes Regelwerk |
+| Python | 🟡 | Legacy-Bots, Admin-Tools, Hooks mit Tests |
+| RAG und Wissenssysteme | 🟡 | 5.170 Chunks, Brain, 2nd Brain |
+| React / TypeScript / Vite / Tailwind | 🟡 | Streamer-Dashboard, Admin-Frontends |
+| Rust (axum, serenity, sqlx, tokio) | 🟢 | Produktionssprache aller Dienste, geschrieben von Agenten, von mir reviewt |
+| Secrets-Management (Infisical, Vaultwarden) | 🟢 | keine `.env`, Secrets nur über den Tresor |
+| Security (Hardening, Pentests der eigenen Systeme) | 🟡 | eigene Audits |
+| Tailscale und Netzwerk | 🟡 | Adminzugang nur übers Tailnet |
+| Web-Scraping und Headless-Browser | 🟡 | eigene Browser-Automation |
+
+Öffentlicher Code liegt unter [github.com/EarlySalty](https://github.com/EarlySalty?tab=repositories). Ein Teil der Bots ist privat, weil Tokens, Moderationslogik und Betriebsdaten nicht auf die Straße gehören.
 
 ---
 
@@ -219,7 +299,7 @@ _Aktualisiert: 2026-09-26_
 
 ### Deutsche Deadlock Community
 
-Website, Discord und die Dienste, die den Server tragen. Rund 2.500 Mitglieder, Mitspieler, Coaching, Voice, Streamer.
+Website, Discord und die Dienste, die den Server tragen. Rund 3.500 Mitglieder, Mitspieler, Coaching, Voice, Streamer.
 
 🔗 [deutsche-deadlock-community.de](https://deutsche-deadlock-community.de) · [Streamer](https://deutsche-deadlock-community.de/streamer/) · [Discord](https://discord.gg/PhkP3WgY7w)
 
